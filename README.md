@@ -47,7 +47,8 @@ The API has the following endpoints:
 
 #### User
 
-Create a user.
+Create a user.  
+
 Required fields:
 * name
 * age
@@ -85,6 +86,10 @@ Content-Type: application/json
 }
 
 ```
+Get a specific user  
+
+Required fields:
+* id
 
 ##### Request
 
@@ -106,7 +111,9 @@ Content-Type: application/json
     "address": "200 Random St"
 }
 
-```
+``` 
+
+List all users 
 
 ##### Request
 
@@ -132,18 +139,27 @@ Content-Type: application/json
 
 ```
 
+Update a specific user 
+
+Required fields:
+* id 
+
+Optional fields:
+* name
+* age
+* email
+* password
+* address 
+
 ##### Request
 
 ```
-PUT /v1/user/1
+PUT /v1/user/{id}
 Content-Type: application/json
 
 {
     "name": "John Stuart",
-    "age": 50,
-    "email": "john.doe@gmail.com",
-    "password": "password",
-    "address": "200 Random St"
+    "age": 50
 }
 ```
 
@@ -153,22 +169,25 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-[
-    {
-        "id": 1,
-        "name": "John Stuart",
-        "age": 50,
-        "email": "john.doe@gmail.com",
-        "address": "200 Random St"
-    }
-]
+{
+    "id": 1,
+    "name": "John Stuart",
+    "age": 50,
+    "email": "john.doe@gmail.com",
+    "address": "200 Random St"
+}
 
 ```
+
+Remove a specific user  
+
+Required fields:
+* id
 
 ##### Request
 
 ```
-DELETE /v1/user/1
+DELETE /v1/user/{id}
 ```
 
 ##### Response
