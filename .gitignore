@@ -1,0 +1,24 @@
+# GoLand IDE
+.idea/
+
+# Compiled Output
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# Build directories
+/build/
+/bin/
+
+# Testing directories
+/.idea_test/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# e
