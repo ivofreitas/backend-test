@@ -6,7 +6,7 @@
 
 ## Setup
 
-1. Start  app:
+1. Starting the app can be one of the following:
     1. Dockerized:
       
          Requires docker and docker-compose
