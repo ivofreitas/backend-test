@@ -17,6 +17,7 @@ type Option struct {
 	DB *sql.DB
 }
 
+// Register - create all routes
 func Register(g *echo.Group, opts Option) {
 
 	env := config.GetEnv()

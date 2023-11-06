@@ -15,6 +15,7 @@ var (
 	conn *sql.DB
 )
 
+// GetConn - returns a db connection
 func GetConn() *sql.DB {
 	once.Do(func() {
 		mySQL := config.GetEnv().MySQL

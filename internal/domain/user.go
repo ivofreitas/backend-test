@@ -9,6 +9,7 @@ type User struct {
 	Address  string `json:"address" validate:"required"`
 }
 
+// NewUserWithoutPass - creates a instance of user without password
 func NewUserWithoutPass(user *User) *UserNoPass {
 	response := new(UserNoPass)
 	response.ID = user.ID

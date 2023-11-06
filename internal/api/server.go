@@ -28,6 +28,7 @@ type Server struct {
 	signal chan struct{}
 }
 
+// NewServer - creates a new instance of server
 func NewServer() *Server {
 	log.Init()
 
@@ -37,6 +38,7 @@ func NewServer() *Server {
 	}
 }
 
+// Run - start the server
 func (s *Server) Run() {
 	s.start()
 	s.logger.Println("Server started and waiting for the graceful signal...")

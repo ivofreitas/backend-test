@@ -6,7 +6,6 @@ import (
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
-// Options
 type Options struct {
 	Group       *echo.Group
 	AccessKey   string
@@ -17,7 +16,7 @@ type Options struct {
 	BasePath    string
 }
 
-// Register group item check
+// Register - make available swagger home page
 func Register(opts Options) {
 
 	docs.SwaggerInfo.Title = opts.Title

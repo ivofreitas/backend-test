@@ -25,6 +25,7 @@ const (
 	serviceName string = "backend-test"
 )
 
+// Init - initialize logger tool
 func Init() {
 	once.Do(func() {
 		logConfig := config.GetEnv().Log

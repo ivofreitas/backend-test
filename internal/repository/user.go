@@ -42,10 +42,12 @@ type Repository struct {
 	db      *sql.DB
 }
 
+// NewUserRepo - creates a new instance of user repository
 func NewUserRepo(timeout time.Duration, db *sql.DB) handler.Repository {
 	return &Repository{timeout, db}
 }
 
+// CreateUser - save a user into the database
 func (r *Repository) CreateUser(ctx context.Context, user *domain.User) error {
 	timeoutCtx, cancel := context.WithTimeout(ctx, r.timeout)
 	defer cancel()
@@ -67,6 +69,7 @@ func (r *Repository) CreateUser(ctx context.Context, user *domain.User) error {
 	return nil
 }
 
+// DeleteUser - remove a specific user from the database
 func (r *Repository) DeleteUser(ctx context.Context, id int32) error {
 	cancelCtx, cancel := context.WithTimeout(ctx, r.timeout)
 	defer cancel()
@@ -75,6 +78,7 @@ func (r *Repository) DeleteUser(ctx context.Context, id int32) error {
 	return err
 }
 
+// GetUser - get a specific user from the database
 func (r *Repository) GetUser(ctx context.Context, id int32) (*domain.User, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx, r.timeout)
 	defer cancel()
@@ -93,6 +97,7 @@ func (r *Repository) GetUser(ctx context.Context, id int32) (*domain.User, error
 	return &user, err
 }
 
+// ListUsers - list all users available in database
 func (r *Repository) ListUsers(ctx context.Context) ([]domain.User, error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx, r.timeout)
 	defer cancel()
@@ -126,6 +131,7 @@ func (r *Repository) ListUsers(ctx context.Context) ([]domain.User, error) {
 	return users, nil
 }
 
+// UpdateUser - update a specific user from the database
 func (r *Repository) UpdateUser(ctx context.Context, user *domain.User) error {
 	timeoutCtx, cancel := context.WithTimeout(ctx, r.timeout)
 	defer cancel()

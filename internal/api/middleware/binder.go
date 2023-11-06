@@ -11,6 +11,7 @@ func NewBinder() *Binder {
 	return &Binder{}
 }
 
+// Bind - information sent though request into internal structs
 func (cb *Binder) Bind(i interface{}, c echo.Context) error {
 	db := new(echo.DefaultBinder)
 

@@ -23,6 +23,7 @@ type User struct {
 	generateFromPassword GenerateFromPassword
 }
 
+// NewUserHdl - create a new instance of user handler
 func NewUserHdl(repository Repository, generateFromPassword GenerateFromPassword) *User {
 	return &User{repository, generateFromPassword}
 }

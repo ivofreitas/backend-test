@@ -13,6 +13,7 @@ func NewValidator() *Validator {
 	return &Validator{validate: validator.New()}
 }
 
+// Validate - information provided in request against internal rules
 func (v *Validator) Validate(i interface{}) error {
 	err := v.validate.Struct(i)
 	if err != nil {
