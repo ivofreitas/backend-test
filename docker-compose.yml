@@ -1,0 +1,40 @@
+version: '2.1'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "p45sw0rd"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "verify_my"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./internal/repository:/docker-entrypoint-initdb.d
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SERVER_HOST: "localhost"
+      SERVER_BASE_PATH: "/v1"
+      SERVER_PORT: 8080
+      LOG_ENABLED: "true"
+      LOG_LEVEL: "info"
+      DOC_TITLE: "backend-test"
+      DOC_DESCRIPTION:
+      DOC_ENABLED: "true"
+      DOC_VERSION: "1.0.0"
+      MYSQL_USERNAME: "user"
+      MYSQL_PASSWORD: "p45sw0rd"
+      MYSQL_HOST: "db:3306"
+      MYSQL_DATABASE: "verify_my"
+      MYSQL_POOL_CONN: 5
+      MYSQL_QUERY_TIMEOUT: "10s"
+      MYSQL_CONN_LIFETIME: "60s"
+      SECURITY_SECRET_KEY: "707045b3f0bd5fxa"
+    ports:
+      - "8088:8080"

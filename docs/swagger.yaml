@@ -1,0 +1,220 @@
+definitions:
+  domain.Meta:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+      record_count:
+        type: integer
+    type: object
+  domain.Response:
+    properties:
+      meta:
+        $ref: '#/definitions/domain.Meta'
+      records:
+        items: {}
+        type: array
+    type: object
+  domain.ResponseError:
+    properties:
+      developer_message:
+        type: string
+      status_code:
+        type: integer
+      user_message:
+        type: string
+    type: object
+  domain.User:
+    properties:
+      address:
+        type: string
+      age:
+        type: integer
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+    required:
+    - address
+    - age
+    - email
+    - name
+    - password
+    type: object
+info:
+  contact: {}
+paths:
+  /user:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/domain.Response'
+            - properties:
+                meta:
+                  $ref: '#/definitions/domain.Meta'
+                records:
+                  items:
+                    $ref: '#/definitions/domain.User'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+      summary: list all users.
+      tags:
+      - User
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: key
+        required: true
+        schema:
+          $ref: '#/definitions/domain.User'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/domain.Response'
+            - properties:
+                meta:
+                  $ref: '#/definitions/domain.Meta'
+                records:
+                  items:
+                    $ref: '#/definitions/domain.User'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+      summary: create a User.
+      tags:
+      - User
+  /user/{id}:
+    delete:
+      parameters:
+      - description: User id
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/domain.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+      summary: delete a User.
+      tags:
+      - User
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: User id
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/domain.Response'
+            - properties:
+                meta:
+                  $ref: '#/definitions/domain.Meta'
+                records:
+                  items:
+                    $ref: '#/definitions/domain.User'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+      summary: retrieve a User by it's id.
+      tags:
+      - User
+    put:
+      parameters:
+      - description: User id
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/domain.Response'
+            - properties:
+                meta:
+                  $ref: '#/definitions/domain.Meta'
+                records:
+                  items:
+                    $ref: '#/definitions/domain.User'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/domain.ResponseError'
+      summary: list all users.
+      tags:
+      - User
+swagger: "2.0"
