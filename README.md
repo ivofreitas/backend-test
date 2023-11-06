@@ -215,7 +215,6 @@ If an error occurs, the API will return a JSON object with an error message:
 Possible HTTP status codes for errors include:
 
 - `400 Bad Request` for invalid request data
-- `401 Unauthorized` missing a valid authorization token
 - `404 Not Found` resource not found
 - `409 Conflict` username already present in the database
 - `500 Internal Server Error` for server-side errors
